@@ -1,0 +1,12 @@
+venv/
+env/
+.env
+db/database.sqlite
+*.sqlite3
+*.sqlite
+__pycache__/
+*.pyc
+*.exe
+.idea/
+.vscode/
+pass.py

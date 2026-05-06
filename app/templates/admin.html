@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель генератора</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="icon" href="/static/img/admin_favicon.png" type="image/png">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+
+        <nav class="admin-nav">
+            <a href="/" class="nav-button">← На главную</a>
+            <a href="/logout" class="nav-button">Logout</a>
+        </nav>
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Число</th>
+                        <th>Комментарий</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for n in numbers %}
+                    <tr id="row-{{ n.id }}" class="{{ 'shown' if n.is_shown else '' }}">
+                        <td>{{ n.id }}</td>
+                        <td>{{ n.value }}</td>
+                        <td class="comment-cell">{{ n.comment }}</td>
+                        <td class="status-cell">{{ 'Выдано' if n.is_shown else 'В ожидании' }}</td>
+                        <td>
+                            <form action="/admin/delete/{{ n.id }}" method="post" class="delete-form">
+                                <button type="submit" class="btn-delete">❌</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="add-row">
+                        <form action="/admin/add" method="post">
+                            <td>Новое</td>
+                            <td>
+                                <input type="number" name="value" placeholder="Число" required class="input-value">
+                            </td>
+                            <td>
+                                <input type="text" name="comment" placeholder="Комментарий (необязательно)" class="input-comment">
+                            </td>
+                            <td class="center-text">
+                                <button type="submit" class="btn-add">Добавить</button>
+                            </td>
+                        </form>
+                        <td class="center-text">
+                            <form action="/admin/delete_shown" method="post" onsubmit="return confirm('Удалить все выданные числа?')">
+                                <button type="submit" class="btn-delete-all">Очистить выданные</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<script src="/static/js/admin.js"></script>
+</body>
+</html>

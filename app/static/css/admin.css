@@ -1,0 +1,172 @@
+.admin-body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: block;
+}
+
+.admin-container {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.admin-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.nav-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #4eb5e6;
+    background-color: white;
+    color: #4eb5e6;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #4eb5e6;
+    color: white;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    min-width: 600px;
+}
+
+.admin-table th, .admin-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 15px;
+}
+
+.comment-cell {
+    max-width: 300px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.shown {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.input-value {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.input-comment {
+    width: 95%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn-add {
+    background-color: #4eb5e6;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #47a2cc;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e74c3c;
+    padding: 0 10px;
+    transition: transform 0.2s;
+}
+
+.btn-delete:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+    .nav-button {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    .btn-add {
+        padding: 12px 8px;
+        font-size: 16px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 8px;
+    }
+}
+
+.btn-delete-all {
+    background-color: #fff;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-delete-all:hover {
+    background-color: #e74c3c;
+    color: white;
+    box-shadow: 0 2px 5px rgba(231, 76, 60, 0.3);
+}
+
+.btn-delete-all:active {
+    transform: translateY(1px);
+}
+
+.admin-table th:last-child, .admin-table td:last-child {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.admin-table td.center-text {
+    padding: 5px;
+}

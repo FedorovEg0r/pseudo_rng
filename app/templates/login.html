@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="icon" href="/static/img/admin_favicon.png" type="image/png">
+</head>
+<body>
+    <div class="login-card">
+        <h2>Вход</h2>
+        <form action="/login" method="post">
+            <input type="password" name="password" placeholder="Введите пароль" required>
+            {% if error %}
+                <span class="error-text">Неверный пароль</span>
+            {% endif %}
+            <button type="submit">Войти</button>
+        </form>
+        <a href="/" class="back-link">
+            <button type="button">На главную</button>
+        </a>
+    </div>
+</body>
+</html>
