@@ -144,3 +144,29 @@ def delete_shown_numbers(request: Request, db: Session = Depends(get_db)):
     db.commit()
 
     return RedirectResponse(url="/admin", status_code=303)
+
+
+@app.post("/admin/edit/{number_id}")
+def edit_number(
+        request: Request,
+        number_id: int,
+        value: int = Form(...),
+        comment: Optional[str] = Form(None),
+        db: Session = Depends(get_db)
+):
+    if not is_authenticated(request):
+        return RedirectResponse(url="/login", status_code=303)
+
+    number_obj = db.query(models.Number).filter(models.Number.id == number_id).first()
+
+    if not number_obj:
+        raise HTTPException(status_code=404, detail="Запись не найдена")
+
+    if number_obj.is_shown:
+        raise HTTPException(status_code=400, detail="Нельзя редактировать выданное число")
+
+    number_obj.value = str(value)
+    number_obj.comment = comment or ""
+    db.commit()
+
+    return RedirectResponse(url="/admin", status_code=303)

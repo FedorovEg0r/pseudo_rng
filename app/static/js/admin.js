@@ -12,6 +12,11 @@ async function checkUpdates() {
                 if (statusCell) {
                     statusCell.innerText = 'Выдано';
                 }
+
+                const editButton = row.querySelector('.btn-edit');
+                if (editButton) {
+                    editButton.remove();
+                }
             }
         });
     } catch (err) {
@@ -20,3 +25,26 @@ async function checkUpdates() {
 }
 
 setInterval(checkUpdates, 2000);
+
+function openEditModal(id, value, comment) {
+    const modal = document.getElementById('editModal');
+    const form = document.getElementById('editForm');
+
+    form.action = `/admin/edit/${id}`;
+
+    document.getElementById('editValue').value = value;
+    document.getElementById('editComment').value = comment;
+
+    modal.style.display = 'flex';
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('editModal');
+    if (event.target == modal) {
+        closeEditModal();
+    }
+}

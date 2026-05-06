@@ -32,9 +32,18 @@
                         <td class="comment-cell">{{ n.comment }}</td>
                         <td class="status-cell">{{ 'Выдано' if n.is_shown else 'В ожидании' }}</td>
                         <td>
-                            <form action="/admin/delete/{{ n.id }}" method="post" class="delete-form">
-                                <button type="submit" class="btn-delete">❌</button>
-                            </form>
+                            <div class="actions">
+                                {% if not n.is_shown %}
+                                <button type="button" class="btn-edit"
+                                        onclick="openEditModal('{{ n.id }}', '{{ n.value }}', '{{ n.comment }}')">
+                                    ✏️
+                                </button>
+                                {% endif %}
+
+                                <form action="/admin/delete/{{ n.id }}" method="post" class="delete-form" style="display:inline;">
+                                    <button type="submit" class="btn-delete">❌</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}
@@ -61,6 +70,19 @@
             </table>
         </div>
     </div>
+<div id="editModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Редактировать запись</h3>
+        <form id="editForm" method="post">
+            <input type="number" name="value" id="editValue" placeholder="Число" required class="input-value">
+            <input type="text" name="comment" id="editComment" placeholder="Комментарий (необязательно)" class="input-comment">
+            <div class="modal-buttons">
+                <button type="submit" class="btn-add">Сохранить</button>
+                <button type="button" onclick="closeEditModal()" class="btn-delete">Отмена</button>
+            </div>
+        </form>
+    </div>
+</div>
 <script src="/static/js/admin.js"></script>
 </body>
 </html>
